@@ -10,12 +10,25 @@ def call(Map config = [:]) {
         agent any
 
         stages {
+
+            stage('Çlone project'){
+                git branch: 'staging', credentialsId: 'github-id', url: 'https://github.com/sunlyhuor/nextjdproject.git'
+            }
+
+            stage('Docker hub login'){
+                script{
+                    withCredentials([usernamePassword(credentialsId: 'dockerhub-id', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
+                        sh'docker login -u $USER -p $PASS'
+                    }
+                }
+            }
+
             stage('Build Docker Image') {
                 steps {
                     script {
                         echo "Building Docker image: ${registry}/${image}:${tag}"
                         sh """
-                            docker build -t ${registry}/${image}:${tag} .
+                            docker build -t ${registry}/${image}:${tag}
                             docker push ${registry}/${image}:${tag}
                         """
                     }
