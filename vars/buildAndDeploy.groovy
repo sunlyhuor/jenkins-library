@@ -11,7 +11,9 @@ def call(Map config = [:]) {
 
         stages {
             stage('Clone project'){
-                git branch: 'staging', credentialsId: 'github-id', url: 'https://github.com/sunlyhuor/nextjdproject.git'
+                steps{
+                    git branch: 'staging', credentialsId: 'github-id', url: 'https://github.com/sunlyhuor/nextjdproject.git'
+                }
             }
             stage('Docker hub login'){
                 script{
