@@ -16,9 +16,11 @@ def call(Map config = [:]) {
                 }
             }
             stage('Docker hub login'){
-                script{
-                    withCredentials([usernamePassword(credentialsId: 'dockerhub-id', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
-                        sh'docker login -u $USER -p $PASS'
+                steps{
+                    script{
+                        withCredentials([usernamePassword(credentialsId: 'dockerhub-id', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
+                            sh'docker login -u $USER -p $PASS'
+                        }
                     }
                 }
             }
