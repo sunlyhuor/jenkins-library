@@ -1,4 +1,4 @@
-@Library('buildAndDeploy') _
+@Library('jenkins-library') _
 
 buildAndDeploy(
     image: 'react-docker',
