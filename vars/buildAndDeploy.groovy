@@ -10,11 +10,9 @@ def call(Map config = [:]) {
         agent any
 
         stages {
-
-            stage('Çlone project'){
+            stage('Clone project'){
                 git branch: 'staging', credentialsId: 'github-id', url: 'https://github.com/sunlyhuor/nextjdproject.git'
             }
-
             stage('Docker hub login'){
                 script{
                     withCredentials([usernamePassword(credentialsId: 'dockerhub-id', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
@@ -22,7 +20,6 @@ def call(Map config = [:]) {
                     }
                 }
             }
-
             stage('Build Docker Image') {
                 steps {
                     script {
@@ -34,7 +31,6 @@ def call(Map config = [:]) {
                     }
                 }
             }
-
             stage('delete container'){
                 steps{
                     sh'''
@@ -42,7 +38,6 @@ def call(Map config = [:]) {
                     '''
                 }
             }
-
             stage('Deploy Docker Container') {
                 steps {
                     script {
