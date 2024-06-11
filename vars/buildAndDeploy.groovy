@@ -29,7 +29,7 @@ def call(Map config = [:]) {
                     script {
                         echo "Building Docker image: ${registry}/${image}:${tag}"
                         sh """
-                            docker build -t ${registry}/${image}:${tag}
+                            docker build -t ${registry}/${image}:${tag} .
                             docker push ${registry}/${image}:${tag}
                         """
                     }
