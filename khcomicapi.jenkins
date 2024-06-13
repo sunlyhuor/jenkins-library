@@ -7,19 +7,19 @@ pipeline {
                 git branch: "main", credentialsId: "gitlab-id", url: "https://gitlab.com/huorgroup/khcomic/kh-comic-api.git"
             }
         }
-        stage('Write file'){
-            steps{
-                script {
-                    def envFile = ".env"
-                    def secretValues = credentials('khcomic-env')
+        // stage('Write file'){
+        //     steps{
+        //         script {
+        //             def envFile = ".env"
+        //             def secretValues = credentials('khcomic-env')
 
-                    // Write the retrieved secret to the .env file
-                    // writeFile file: envFile, text: secretValues
-                    echo "Environment variables written to ${envFile}"
-                    echo secretValues
-                }
-            }
-        }
+        //             // Write the retrieved secret to the .env file
+        //             // writeFile file: envFile, text: secretValues
+        //             echo "Environment variables written to ${envFile}"
+        //             echo secretValues
+        //         }
+        //     }
+        // }
         stage('Build'){
             steps{
                 sh"docker build -t khcomic-api -f Dockerfile.api ."
@@ -30,6 +30,11 @@ pipeline {
                 
         //     }
         // }
+        stage("Delete container"){
+            steps{
+                sh"docker rm -f khcomic-api"
+            }
+        }
         stage("Run"){
             steps{
                 sh"docker run --name khcomic-api -d -p 3000:3000  khcomic-api"
