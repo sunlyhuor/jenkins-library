@@ -5,15 +5,18 @@ pipeline {
 
         stage('Delete file'){
             steps{
-                sh"pwd"
-                sh"ll"
-                sh"rm -r /var/jenkins_home/workspace/khcomic/api/kh-comic-api"
+                
             }
         }
 
         stage('Gitlab clone'){
             steps{
                 git branch: "main", credentialsId: "gitlab-id", url: "https://gitlab.com/huorgroup/khcomic/kh-comic-api.git"
+            }
+        }
+        stage('Test'){
+            steps{
+                sh"ll"
             }
         }
         stage('Write file'){
