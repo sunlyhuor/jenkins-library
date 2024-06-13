@@ -8,7 +8,6 @@ pipeline {
                 git branch: "main", credentialsId: "gitlab-id", url: "https://gitlab.com/huorgroup/khcomic/kh-comic-api.git"
             }
         }
-        }
         stage('Write file'){
             steps{
                 withCredentials([string(credentialsId: 'khcomic-env', variable: 'SECRET_VALUES')]) {
