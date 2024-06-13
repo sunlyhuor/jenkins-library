@@ -9,12 +9,13 @@ pipeline {
         }
         stage('Write file'){
             steps{
-                script{
+                script {
                     def envFile = ".env"
-                    def values = credentials('khcomic-env')
-                    def file = new File(envFile)
+                    def secretValues = credentials('khcomic-env')
 
-                   file.write(value) 
+                    // Write the retrieved secret to the .env file
+                    writeFile file: envFile, text: secretValues
+                    echo "Environment variables written to ${envFile}"
                 }
             }
         }
