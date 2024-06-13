@@ -5,7 +5,9 @@ pipeline {
 
         stage('Delete file'){
             steps{
-                sh"rm -r ~/kh-comic-api"
+                sh"pwd"
+                sh"ll"
+                // sh"rm -r ~/kh-comic-api"
             }
         }
 
