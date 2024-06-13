@@ -16,7 +16,7 @@ pipeline {
         }
         stage('Test'){
             steps{
-                sh"ll"
+                sh"ls"
             }
         }
         stage('Write file'){
