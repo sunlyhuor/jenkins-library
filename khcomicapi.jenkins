@@ -3,11 +3,11 @@ pipeline {
 
     stages{
 
-        stage('Delete file'){
-            steps{
+        // stage('Delete file'){
+        //     steps{
                 
-            }
-        }
+        //     }
+        // }
 
         stage('Gitlab clone'){
             steps{
