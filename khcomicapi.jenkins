@@ -10,12 +10,15 @@ pipeline {
         stage('Write file'){
             steps{
                 script {
-                    def envFile = ".env"
-                    def secretValues = credentials('khcomic-env')
+                     // Retrieve the secret values from Jenkins credentials
+                    def secretValues = credentialsId('khcomic-env')
 
-                    // Write the retrieved secret to the .env file
+                    // Define the .env file name
+                    def envFile = '.env'
+
+                    // Write the secret values to the .env file
                     writeFile file: envFile, text: secretValues
-                    echo "$secretValues"
+                    echo "Environment variables written to ${envFile}"
                 }
             }
         }
