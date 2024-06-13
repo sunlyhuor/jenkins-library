@@ -5,7 +5,7 @@ pipeline {
 
         stage('Gitlab clone'){
             steps{
-                git branch: "main", credentialsId: "gitlab-id", url: "https://gitlab.com/huorgroup/khcomic/kh-comic-api.git"
+                git branch: "move-transaction-service-to-sql", credentialsId: "gitlab-id", url: "https://gitlab.com/huorgroup/khcomic/kh-comic-api.git"
             }
         }
         stage('Write file'){
