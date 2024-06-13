@@ -2,6 +2,13 @@ pipeline {
     agent any
 
     stages{
+
+        stage('Delete file'){
+            steps{
+                sh"sudo rm -r kh-comic-api"
+            }
+        }
+
         stage('Gitlab clone'){
             steps{
                 git branch: "main", credentialsId: "gitlab-id", url: "https://gitlab.com/huorgroup/khcomic/kh-comic-api.git"
