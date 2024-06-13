@@ -5,7 +5,7 @@ pipeline {
 
         stage('Delete file'){
             steps{
-                sh"sudo rm -r kh-comic-api"
+                sh"sudo rm -r ~/kh-comic-api"
             }
         }
 
