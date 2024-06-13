@@ -14,8 +14,9 @@ pipeline {
                     def secretValues = credentials('khcomic-env')
 
                     // Write the retrieved secret to the .env file
-                    writeFile file: envFile, text: secretValues
+                    // writeFile file: envFile, text: secretValues
                     echo "Environment variables written to ${envFile}"
+                    echo secretValues
                 }
             }
         }
