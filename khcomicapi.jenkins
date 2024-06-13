@@ -7,7 +7,7 @@ pipeline {
             steps{
                 sh"pwd"
                 sh"ll"
-                // sh"rm -r ~/kh-comic-api"
+                sh"rm -r /var/jenkins_home/workspace/khcomic/api/kh-comic-api"
             }
         }
 
