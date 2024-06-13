@@ -4,7 +4,22 @@ pipeline {
     stages{
         stage('Gitlab clone'){
             steps{
+                git branch: "main", credentialsId: "gitlab-id", url: "https://gitlab.com/huorgroup/khcomic/kh-comic-api.git"
+            }
+        }
+        stage('Build'){
+            steps{
+                sh"docker build -t khcomic-api ."
+            }
+        }
+        // stage('Test'){
+        //     steps{
                 
+        //     }
+        // }
+        stage("Run"){
+            steps{
+                sh"docker run --name khcomic-api -d -p 3000:3000 -f Dockerfile.api khcomic-api"
             }
         }
     }
