@@ -1,9 +1,5 @@
 pipeline {
     agent any
-    
-    def envFile = ".env"
-    def values = credentials('khcomic-env')
-    def file = new File(envFile)
 
     stages{
         stage('Gitlab clone'){
@@ -14,6 +10,10 @@ pipeline {
         stage('Write file'){
             steps{
                 script{
+                    def envFile = ".env"
+                    def values = credentials('khcomic-env')
+                    def file = new File(envFile)
+                    
                    file.write(value) 
                 }
             }
