@@ -3,21 +3,11 @@ pipeline {
 
     stages{
 
-        // stage('Delete file'){
-        //     steps{
-                
-        //     }
-        // }
-
         stage('Gitlab clone'){
             steps{
                 git branch: "main", credentialsId: "gitlab-id", url: "https://gitlab.com/huorgroup/khcomic/kh-comic-api.git"
             }
         }
-        stage('Test'){
-            steps{
-                sh"ls"
-            }
         }
         stage('Write file'){
             steps{
