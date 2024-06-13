@@ -9,7 +9,7 @@ pipeline {
         }
         stage('Build'){
             steps{
-                sh"docker build -t khcomic-api ."
+                sh"docker build -t khcomic-api f Dockerfile.api ."
             }
         }
         // stage('Test'){
@@ -19,7 +19,7 @@ pipeline {
         // }
         stage("Run"){
             steps{
-                sh"docker run --name khcomic-api -d -p 3000:3000 -f Dockerfile.api khcomic-api"
+                sh"docker run --name khcomic-api -d -p 3000:3000  khcomic-api"
             }
         }
     }
