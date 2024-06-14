@@ -44,10 +44,10 @@ pipeline {
                 sh"docker run --name khcomic-api -d -p 3000:3000  khcomic-api"
             }
         }
-        // stage('Cleann ws'){
-        //     steps{
-        //         cleanWs()
-        //     }
-        // }
+        stage('Cleann ws'){
+             steps{
+                 cleanWs()
+             }
+        }
     }
 }
