@@ -8,6 +8,11 @@ pipeline {
                 git branch: "move-transaction-service-to-sql", credentialsId: "gitlab-id", url: "https://gitlab.com/huorgroup/khcomic/kh-comic-api.git"
             }
         }
+        stage('Gitlab clone env'){
+            steps{
+                git branch: "main", credentialsId: "gitlab-id", url: "https://gitlab.com/huorgroup/khcomic/khcomic-production-env.git"
+            }
+        }
         stage('Write file'){
             steps{
                 // withCredentials([usernamePassword(credentialsId: 'khcomic-production-env', passwordVariable: 'VALUES', usernameVariable: 'NAME')]) {
