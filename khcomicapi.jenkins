@@ -13,22 +13,6 @@ pipeline {
                 git branch: "main", credentialsId: "gitlab-id", url: "https://gitlab.com/huorgroup/khcomic/khcomic-production-env.git"
             }
         }
-        stage('Write file'){
-            steps{
-                // withCredentials([usernamePassword(credentialsId: 'khcomic-production-env', passwordVariable: 'VALUES', usernameVariable: 'NAME')]) {
-                script {
-                    // Define the .env file name
-                    def envFile = '.env'
-                    
-                    // Use a shell command to write the secret values to the .env file
-                    sh """
-                        echo "${env.khcomic-production-env}" > ${envFile}
-                    """
-                    echo "Environment variables written to ${envFile}"
-                }
-            // }
-            }
-        }
         stage('Build'){
             steps{
                 sh"docker build -t khcomic-api -f Dockerfile.api ."
