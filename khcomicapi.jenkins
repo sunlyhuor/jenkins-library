@@ -9,7 +9,9 @@ pipeline {
                 git branch: "move-transaction-service-to-sql", credentialsId: "gitlab-id", url: "https://gitlab.com/huorgroup/khcomic/kh-comic-api.git"
                 // git branch: "main", credentialsId: "gitlab-id", url: "https://gitlab.com/huorgroup/khcomic/khcomic-production-env.git"
                 withCredentials([usernamePassword(credentialsId: 'gitlab-id', passwordVariable: 'SECRET', usernameVariable: 'USER')]) {
-                    sh'git clone https://$USER:$SECRET@gitlab.com/huorgroup/khcomic/khcomic-production-env.git .'
+                    sh'echo $USER'
+                    sh'git clone https://$USER:$SECRET@gitlab.com/huorgroup/khcomic/khcomic-production-env.git env'
+                    sh'mv env/.env ./'
                 }
             }
         }
