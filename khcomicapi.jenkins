@@ -19,6 +19,8 @@ pipeline {
             steps{
                 sh"docker build -t khcomic-api -f Dockerfile.api ."
                 sh"docker build -t khcomic-auth -f Dockerfile.auth ."
+                sh"docker build -t khcomic-auth -f Dockerfile.book ."
+                sh"docker build -t khcomic-auth -f Dockerfile.transaction ."
             }
         }
         // stage('Test'){
@@ -36,6 +38,8 @@ pipeline {
             steps{
                 sh"docker run --restart=always --name khcomic-api -d -p 3000:3000  khcomic-api"
                 sh"docker run --restart=always --name khcomic-auth -d khcomic-auth"
+                sh"docker run --restart=always --name khcomic-book -d khcomic-book"
+                sh"docker run --restart=always --name khcomic-transaction -d khcomic-transaction"
             }
         }
         stage('Cleann ws'){
