@@ -32,7 +32,7 @@ pipeline {
         }
         stage("Run"){
             steps{
-                sh"docker run --name khcomic-api -d -p 3000:3000  khcomic-api"
+                sh"docker run --restart=always --name khcomic-api -d -p 3000:3000  khcomic-api"
             }
         }
         stage('Cleann ws'){
