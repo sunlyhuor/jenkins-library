@@ -10,7 +10,7 @@ pipeline {
         }
         stage('Write file'){
             steps{
-                withCredentials([string(credentialsId: 'khcomic-env', variable: 'SECRET_VALUES')]) {
+                withCredentials([string(credentialsId: 'khcomic-production-env', variable: 'SECRET_VALUES')]) {
                     script {
                         // Define the .env file name
                         def envFile = '.env'
