@@ -11,13 +11,14 @@ pipeline {
                 withCredentials([usernamePassword(credentialsId: 'gitlab-id', passwordVariable: 'SECRET', usernameVariable: 'USER')]) {
                     sh'echo $USER'
                     sh'git clone https://$USER:$SECRET@gitlab.com/huorgroup/khcomic/khcomic-production-env.git env'
-                    sh'mv env/.env ./'
+                    sh'cp env/.env ./'
                 }
             }
         }
         stage('Build'){
             steps{
                 sh"docker build -t khcomic-api -f Dockerfile.api ."
+                sh"docker build -t khcomic-auth -f Dockerfile.auth ."
             }
         }
         // stage('Test'){
@@ -28,11 +29,13 @@ pipeline {
         stage("Delete container"){
             steps{
                 sh"docker rm -f khcomic-api"
+                sh"docker rm -f khcomic-auth"
             }
         }
         stage("Run"){
             steps{
                 sh"docker run --restart=always --name khcomic-api -d -p 3000:3000  khcomic-api"
+                sh"docker run --restart=always --name khcomic-auth -d khcomic-auth"
             }
         }
         stage('Cleann ws'){
