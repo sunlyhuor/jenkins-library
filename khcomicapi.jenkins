@@ -19,7 +19,7 @@ pipeline {
             steps{
                 sh"docker build -t khcomic-api -f Dockerfile.api ."
                 sh"docker build -t khcomic-auth -f Dockerfile.auth ."
-                sh"docker build -t khcomic-auth -f Dockerfile.book ."
+                sh"docker build -t khcomic-book -f Dockerfile.book ."
                 sh"docker build -t khcomic-auth -f Dockerfile.transaction ."
             }
         }
@@ -32,6 +32,8 @@ pipeline {
             steps{
                 sh"docker rm -f khcomic-api"
                 sh"docker rm -f khcomic-auth"
+                sh"docker rm -f khcomic-book"
+                sh"docker rm -f khcomic-transaction"
             }
         }
         stage("Run"){
