@@ -10,14 +10,14 @@ pipeline {
         }
         stage('Write file'){
             steps{
-                withCredentials([string(credentialsId: 'khcomic-production-env', variable: 'SECRET_VALUES')]) {
+                withCredentials([string(credentialsId: 'khcomic-production-env', passwordVariable: 'VALUES', usernameVariable: 'NAME']) {
                     script {
                         // Define the .env file name
                         def envFile = '.env'
                         
                         // Use a shell command to write the secret values to the .env file
                         sh """
-                            echo "${SECRET_VALUES}" > ${envFile}
+                            echo "${VALUES}" > ${envFile}
                         """
                         echo "Environment variables written to ${envFile}"
                     }
