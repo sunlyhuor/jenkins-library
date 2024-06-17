@@ -2,7 +2,11 @@ pipeline {
     agent any
 
     stages{
-
+        stage('Remove env folder'){
+            steps{    
+                sh'rm -r env'
+            }    
+        }
         stage('Gitlab clone'){
             steps{
                 // https://gitlab.com/huorgroup/khcomic/khcomic-production-env.git
